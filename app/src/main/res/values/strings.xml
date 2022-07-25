@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">FitnestX</string>
     <string name="common_google_play_services_install_title">Get Google Play services</string>
     <string name="common_google_play_services_install_text_phone">This app won\'t run without Google Play services, which are missing from your phone.</string>
     <string name="common_google_play_services_install_text_tablet">This app won\'t run without Google Play services, which are missing from your tablet.</string>
@@ -27,7 +28,6 @@
     <string name="auth_client_play_services_err_notification_msg">Google Play services error</string>
     <string name="auth_client_requested_by_msg">Requested by %1$s</string>
     <string name="location_client_powered_by_google">Powered by Google</string>
-    <string name="app_name">Library exercises</string>
     <string name="exit">Exit</string>
     <string name="about">About</string>
     <string name="donate">Donate</string>

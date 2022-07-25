@@ -24,4 +24,5 @@
     <color name="orange">#eb9735</color>
     <color name="dark">#1f2424</color>
     <color name="light">#faf4d4</color>
+    <color name="gradient">#9DCEFF</color>
 </resources>

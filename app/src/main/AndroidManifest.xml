@@ -4,22 +4,29 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Fitnessapp">
+        android:theme="@style/Fitnessapp">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.Fitnessapp.NoActionBar">
+            android:label="SplashActivity"
+            android:theme="@style/Theme.Fitnessapp.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="MainActivity"
+            android:theme="@style/Theme.Fitnessapp.Launcher" />
     </application>
 
 </manifest>
