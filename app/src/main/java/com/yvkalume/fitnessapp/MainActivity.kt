@@ -5,17 +5,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.yvkalume.fitnessapp.ui.screen.HomeScreen
-import com.yvkalume.fitnessapp.ui.screen.WelcomeScreen
-import com.yvkalume.fitnessapp.ui.theme.FitnessappTheme
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.yvkalume.fitnessapp.presentation.screen.HomeScreen
+import com.yvkalume.fitnessapp.presentation.screen.MainScreen
+import com.yvkalume.fitnessapp.presentation.screen.WelcomeScreen
+import com.yvkalume.fitnessapp.presentation.theme.FitnessappTheme
 
 class MainActivity : ComponentActivity() {
+
+    @OptIn(ExperimentalPagerApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -23,7 +24,10 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "welcome") {
+                    NavHost(navController = navController, startDestination = "main") {
+                        composable(route = "main") {
+                            MainScreen()
+                        }
                         composable(route = "welcome") {
                             WelcomeScreen(navController)
                         }
