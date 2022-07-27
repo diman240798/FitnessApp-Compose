@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="sections_arr">
-        <item>Руки</item>
-        <item>Плечи</item>
-        <item>Грудь</item>
-        <item>Спина</item>
-        <item>Ноги</item>
-        <item>Ягодицы</item>
-        <item>Живот</item>
-    </array>
     <array name="programArr">
         <item>Programs for men</item>
         <item>Programs for women</item>
