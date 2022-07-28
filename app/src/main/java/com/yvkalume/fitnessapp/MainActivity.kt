@@ -6,20 +6,25 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideIn
+import androidx.compose.animation.slideOut
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.ui.unit.IntOffset
 import androidx.core.content.ContextCompat
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.yvkalume.fitnessapp.presentation.screen.MainScreen
 import com.yvkalume.fitnessapp.presentation.screen.exerciselist.ExercisesListScreen
+import com.yvkalume.fitnessapp.presentation.screen.main.MainScreen
 import com.yvkalume.fitnessapp.presentation.theme.FitnessappTheme
 
 class MainActivity : ComponentActivity() {
 
-    @OptIn(ExperimentalPagerApi::class)
+    @OptIn(ExperimentalPagerApi::class, ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Fitnessapp)
         super.onCreate(savedInstanceState)
@@ -28,12 +33,20 @@ class MainActivity : ComponentActivity() {
             FitnessappTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "main") {
+                    val navController = rememberAnimatedNavController()
+                    AnimatedNavHost(navController = navController, startDestination = "main") {
                         composable(route = "main") {
                             MainScreen(navController)
                         }
-                        composable(route = "exercises_list") {
+                        composable(
+                            route = "exercises_list",
+                            enterTransition = { _, _ ->
+                                slideIn({ IntOffset(0, it.height / 2) }, tween(800))
+                            },
+                            exitTransition = { _, _ ->
+                                slideOut({ IntOffset(0, it.height / 2) }, tween(800))
+                            }
+                        ) {
                             ExercisesListScreen()
                         }
                     }

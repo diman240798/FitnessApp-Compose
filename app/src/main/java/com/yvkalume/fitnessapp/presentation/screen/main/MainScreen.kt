@@ -1,4 +1,4 @@
-package com.yvkalume.fitnessapp.presentation.screen
+package com.yvkalume.fitnessapp.presentation.screen.main
 
 import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
@@ -9,6 +9,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.yvkalume.fitnessapp.presentation.screen.ExercisesScreen
+import com.yvkalume.fitnessapp.presentation.screen.MenProgramsScreen
+import com.yvkalume.fitnessapp.presentation.screen.WomenProgramsScreen
 
 @Composable
 @ExperimentalPagerApi
