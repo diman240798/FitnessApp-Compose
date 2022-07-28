@@ -13,9 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.yvkalume.fitnessapp.presentation.screen.HomeScreen
 import com.yvkalume.fitnessapp.presentation.screen.MainScreen
-import com.yvkalume.fitnessapp.presentation.screen.WelcomeScreen
+import com.yvkalume.fitnessapp.presentation.screen.exerciselist.ExercisesListScreen
 import com.yvkalume.fitnessapp.presentation.theme.FitnessappTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,13 +31,10 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "main") {
                         composable(route = "main") {
-                            MainScreen()
+                            MainScreen(navController)
                         }
-                        composable(route = "welcome") {
-                            WelcomeScreen(navController)
-                        }
-                        composable(route = "home") {
-                            HomeScreen(navController)
+                        composable(route = "exercises_list") {
+                            ExercisesListScreen()
                         }
                     }
                 }

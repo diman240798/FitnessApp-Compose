@@ -5,15 +5,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 
 @Composable
 @ExperimentalPagerApi
-fun MainScreen() {
+fun MainScreen(navController: NavHostController) {
     HorizontalPager(count = 3, modifier = Modifier.background(Color.White)) { page ->
         when (page) {
-            0 -> ExercisesScreen()
+            0 -> ExercisesScreen(navController)
             1 -> MenProgramsScreen()
             else -> WomenProgramsScreen()
         }
@@ -25,5 +27,6 @@ fun MainScreen() {
 @Composable
 @ExperimentalPagerApi
 fun MainScreenPreview() {
-    MainScreen()
+    val navController = rememberNavController()
+    MainScreen(navController)
 }

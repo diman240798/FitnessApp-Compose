@@ -13,3 +13,6 @@ val Gray700 = Color(0xFFA6A6A6)
 val Gray300 = Color(0xFFF2F2F2)
 val White = Color(0xFFFFFFFF)
 val BlackTransparent = Color(0x88000000)
+
+val activeProgress = Color(0x4DFF0000)
+val backgroundProgress = Color(0xFF92A3FD)
