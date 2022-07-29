@@ -2,10 +2,12 @@ package com.yvkalume.fitnessapp.presentation.screen.exerciselist
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,16 +24,28 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.google.accompanist.pager.ExperimentalPagerApi
+import androidx.navigation.NavHostController
 import com.yvkalume.fitnessapp.R
+import com.yvkalume.fitnessapp.data.Exercises
+import com.yvkalume.fitnessapp.presentation.Screens
 import com.yvkalume.fitnessapp.presentation.component.exerciselist.ExerciseListItem
 import com.yvkalume.fitnessapp.presentation.theme.Typography
 
+private val items = arrayListOf(
+    R.array.subsection_arr_1,
+    R.array.subsection_arr_2,
+    R.array.subsection_arr_3,
+    R.array.subsection_arr_4,
+    R.array.subsection_arr_5,
+    R.array.subsection_arr_6,
+    R.array.subsection_arr_7
+)
+
 @Composable
-fun ExercisesListScreen() {
+fun ExercisesListScreen(navController: NavHostController, type: Exercises) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -67,7 +81,11 @@ fun ExercisesListScreen() {
                 Image(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_back),
                     contentDescription = "Back",
-                    modifier = Modifier.padding(16.dp, 8.dp)
+                    modifier = Modifier
+                        .padding(16.dp, 8.dp)
+                        .clickable {
+                            navController.popBackStack()
+                        }
                 )
 
                 Text(
@@ -77,25 +95,32 @@ fun ExercisesListScreen() {
                 )
             }
 
+            val exercieses = stringArrayResource(items[type.ordinal])
+
+            val viewFile = "file/n1s1"
+
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp, 24.dp, 16.dp),
+                    .padding(8.dp, 24.dp, 8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                for (i in 0 until 3) {
+
+                for (name in exercieses) {
                     item {
-                        ExerciseListItem()
+                        ExerciseListItem(name) {
+                            navController.navigate(
+                                Screens.WebView.createRoute(
+                                    "file:///android_asset/" + viewFile + ".html"
+                                )
+                            )
+                        }
                     }
+                }
+                item {
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }
     }
-}
-
-@Preview
-@Composable
-@ExperimentalPagerApi
-fun ExercisesListScreenPreview() {
-    ExercisesListScreen()
 }

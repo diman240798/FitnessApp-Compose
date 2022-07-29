@@ -14,12 +14,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.unit.IntOffset
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.yvkalume.fitnessapp.data.Exercises
+import com.yvkalume.fitnessapp.presentation.Screens
 import com.yvkalume.fitnessapp.presentation.screen.exerciselist.ExercisesListScreen
 import com.yvkalume.fitnessapp.presentation.screen.main.MainScreen
+import com.yvkalume.fitnessapp.presentation.screen.webview.WebViewScreen
 import com.yvkalume.fitnessapp.presentation.theme.FitnessappTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,21 +38,42 @@ class MainActivity : ComponentActivity() {
             FitnessappTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
+
                     val navController = rememberAnimatedNavController()
-                    AnimatedNavHost(navController = navController, startDestination = "main") {
-                        composable(route = "main") {
+                    AnimatedNavHost(
+                        navController = navController,
+                        startDestination = Screens.Main.route
+                    ) {
+
+                        composable(route = Screens.Main.route) {
                             MainScreen(navController)
                         }
+
                         composable(
-                            route = "exercises_list",
+                            route = Screens.ExercicesList.route,
                             enterTransition = { _, _ ->
                                 slideIn({ IntOffset(0, it.height / 2) }, tween(800))
                             },
                             exitTransition = { _, _ ->
                                 slideOut({ IntOffset(0, it.height / 2) }, tween(800))
-                            }
+                            },
+                            arguments = listOf(
+                                navArgument("type") {
+                                    type = NavType.EnumType(Exercises::class.java)
+                                }
+                            )
                         ) {
-                            ExercisesListScreen()
+                            val type = it.arguments!!.get("type") as Exercises
+                            ExercisesListScreen(navController, type)
+                        }
+
+                        composable(
+                            route = Screens.WebView.route,
+                            arguments = listOf(
+                                navArgument("url") { type = NavType.StringType }
+                            )
+                        ) {
+                            WebViewScreen(url = it.arguments!!.getString("url")!!)
                         }
                     }
                 }

@@ -1,7 +1,9 @@
 package com.yvkalume.fitnessapp.presentation.component.exerciselist
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,25 +19,25 @@ import com.yvkalume.fitnessapp.presentation.theme.activeProgress
 import com.yvkalume.fitnessapp.presentation.theme.backgroundProgress
 
 @Composable
-fun ExerciseListItem() {
+fun ExerciseListItem(exerciseName: String, onClick: () -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp)
             .padding(16.dp, 0.dp)
             .background(Color.White, RoundedCornerShape(16.dp))
+            .clickable {
+                onClick()
+            }
     ) {
         Text(
-            text = "1. Попеременные сгибания рук с гантелями",
+            text = exerciseName,
             style = Typography.body1,
-            color = Color.Black,
             modifier = Modifier.padding(16.dp, 8.dp, 16.dp)
         )
 
         Text(
             text = "Сложность: 33%",
-            style = Typography.body1,
-            color = Color.Black,
+            style = Typography.caption,
             modifier = Modifier.padding(16.dp, 0.dp)
         )
 
@@ -49,5 +51,7 @@ fun ExerciseListItem() {
             color = activeProgress,
             backgroundColor = backgroundProgress
         )
+
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }

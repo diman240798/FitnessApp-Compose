@@ -39,7 +39,6 @@ fun WomenProgramsScreen() {
         Text(
             text = "Программы тренировок для женщин",
             style = Typography.h2,
-            color = Color.Black,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(0.dp, 20.dp)

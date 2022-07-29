@@ -11,3 +11,5 @@ enum class Exercises(val nameRes: Int, val imageRes: Int) {
     GLUTES(R.string.exercises_glutes, R.drawable.ic_exercises_glutes),
     ABS(R.string.exercises_abs, R.drawable.ic_exercises_abs),
 }
+
+enum class HandsExercises

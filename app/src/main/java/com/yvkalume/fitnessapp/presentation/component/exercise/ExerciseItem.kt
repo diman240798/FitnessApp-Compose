@@ -50,7 +50,6 @@ fun ExerciseItem(data: Exercises, onClick: () -> Unit = {}) {
             Text(
                 text = stringResource(id = data.nameRes),
                 style = Typography.body1,
-                color = Color.Black,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .padding(12.dp, 0.dp)

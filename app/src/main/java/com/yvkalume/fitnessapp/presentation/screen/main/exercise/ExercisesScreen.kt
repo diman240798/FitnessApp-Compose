@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.yvkalume.fitnessapp.R
 import com.yvkalume.fitnessapp.data.Exercises
+import com.yvkalume.fitnessapp.presentation.Screens
 import com.yvkalume.fitnessapp.presentation.component.exercise.ExerciseItem
 import com.yvkalume.fitnessapp.presentation.theme.Typography
 
@@ -51,7 +52,6 @@ fun ExercisesScreen(navController: NavHostController) {
         Text(
             text = "Упражнения",
             style = Typography.h2,
-            color = Color.Black,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(0.dp, 20.dp)
@@ -96,9 +96,7 @@ fun ExercisesScreen(navController: NavHostController) {
                     Exercises.values().forEach { data ->
                         item {
                             ExerciseItem(data) {
-                                navController.navigate(
-                                    "exercises_list"
-                                )
+                                navController.navigate(Screens.ExercicesList.createRoute(data))
                             }
                         }
                     }
