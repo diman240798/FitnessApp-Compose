@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringArrayResource
@@ -33,16 +32,8 @@ import com.yvkalume.fitnessapp.data.Exercises
 import com.yvkalume.fitnessapp.presentation.Screens
 import com.yvkalume.fitnessapp.presentation.component.exerciselist.ExerciseListItem
 import com.yvkalume.fitnessapp.presentation.theme.Typography
-
-private val items = arrayListOf(
-    R.array.subsection_arr_1,
-    R.array.subsection_arr_2,
-    R.array.subsection_arr_3,
-    R.array.subsection_arr_4,
-    R.array.subsection_arr_5,
-    R.array.subsection_arr_6,
-    R.array.subsection_arr_7
-)
+import com.yvkalume.fitnessapp.presentation.theme.White
+import com.yvkalume.fitnessapp.presentation.theme.horizontalGradient
 
 @Composable
 fun ExercisesListScreen(navController: NavHostController, type: Exercises) {
@@ -50,12 +41,7 @@ fun ExercisesListScreen(navController: NavHostController, type: Exercises) {
         modifier = Modifier
             .fillMaxSize()
             .background(
-                brush = Brush.horizontalGradient(
-                    colors = listOf(
-                        Color(0xFF92A3FD),
-                        Color(0xFF9DCEFF)
-                    )
-                )
+                brush = horizontalGradient
             )
     ) {
         Column(
@@ -69,7 +55,7 @@ fun ExercisesListScreen(navController: NavHostController, type: Exercises) {
                     .height(5.dp)
                     .alpha(0.5F)
                     .background(
-                        color = Color.White,
+                        color = White,
                         shape = RoundedCornerShape(40.dp)
                     )
             )
@@ -91,13 +77,11 @@ fun ExercisesListScreen(navController: NavHostController, type: Exercises) {
                 Text(
                     text = "Упражнения",
                     style = Typography.h2,
-                    color = Color.White
+                    color = White
                 )
             }
 
-            val exercieses = stringArrayResource(items[type.ordinal])
-
-            val viewFile = "file/n1s1"
+            val exercieses = stringArrayResource(type.exercisesList)
 
             LazyColumn(
                 modifier = Modifier
@@ -106,12 +90,12 @@ fun ExercisesListScreen(navController: NavHostController, type: Exercises) {
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
 
-                for (name in exercieses) {
+                for ((index, name) in exercieses.withIndex()) {
                     item {
                         ExerciseListItem(name) {
                             navController.navigate(
                                 Screens.WebView.createRoute(
-                                    "file:///android_asset/" + viewFile + ".html"
+                                    "file:///android_asset/file/n${type.ordinal + 1}s${index + 1}.html"
                                 )
                             )
                         }

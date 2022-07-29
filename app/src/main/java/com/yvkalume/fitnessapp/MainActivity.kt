@@ -6,13 +6,11 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.slideIn
-import androidx.compose.animation.slideOut
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.ui.unit.IntOffset
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
@@ -51,11 +49,19 @@ class MainActivity : ComponentActivity() {
 
                         composable(
                             route = Screens.ExercicesList.route,
-                            enterTransition = { _, _ ->
-                                slideIn({ IntOffset(0, it.height / 2) }, tween(800))
+                            enterTransition = {
+                                slideIntoContainer(
+                                    AnimatedContentScope.SlideDirection.Up,
+                                    animationSpec = tween(800),
+                                    initialOffset = { it / 2 }
+                                )
                             },
-                            exitTransition = { _, _ ->
-                                slideOut({ IntOffset(0, it.height / 2) }, tween(800))
+                            exitTransition = {
+                                slideOutOfContainer(
+                                    AnimatedContentScope.SlideDirection.Down,
+                                    animationSpec = tween(800),
+                                    targetOffset = { it / 2 }
+                                )
                             },
                             arguments = listOf(
                                 navArgument("type") {

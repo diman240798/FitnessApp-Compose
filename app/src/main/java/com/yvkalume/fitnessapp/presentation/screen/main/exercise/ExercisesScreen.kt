@@ -18,8 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.vectorResource
@@ -33,6 +31,8 @@ import com.yvkalume.fitnessapp.data.Exercises
 import com.yvkalume.fitnessapp.presentation.Screens
 import com.yvkalume.fitnessapp.presentation.component.exercise.ExerciseItem
 import com.yvkalume.fitnessapp.presentation.theme.Typography
+import com.yvkalume.fitnessapp.presentation.theme.White
+import com.yvkalume.fitnessapp.presentation.theme.horizontalGradient
 
 
 @Composable
@@ -40,7 +40,7 @@ fun ExercisesScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(White)
     ) {
         Image(
             imageVector = ImageVector.vectorResource(id = R.drawable.ic_exercises_slice),
@@ -61,12 +61,7 @@ fun ExercisesScreen(navController: NavHostController) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(
-                            Color(0xFF92A3FD),
-                            Color(0xFF9DCEFF)
-                        )
-                    ),
+                    brush = horizontalGradient,
                     shape = RoundedCornerShape(40.dp, 40.dp, 0.dp, 0.dp)
                 )
         ) {
@@ -82,7 +77,7 @@ fun ExercisesScreen(navController: NavHostController) {
                         .height(5.dp)
                         .alpha(0.5F)
                         .background(
-                            color = Color.White,
+                            color = White,
                             shape = RoundedCornerShape(40.dp)
                         )
                 )

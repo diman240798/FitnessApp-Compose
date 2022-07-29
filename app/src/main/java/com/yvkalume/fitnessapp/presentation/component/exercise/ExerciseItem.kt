@@ -24,6 +24,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.yvkalume.fitnessapp.R
 import com.yvkalume.fitnessapp.data.Exercises
 import com.yvkalume.fitnessapp.presentation.theme.Typography
+import com.yvkalume.fitnessapp.presentation.theme.White
 
 @Composable
 fun ExerciseItem(data: Exercises, onClick: () -> Unit = {}) {
@@ -31,7 +32,7 @@ fun ExerciseItem(data: Exercises, onClick: () -> Unit = {}) {
         modifier = Modifier
             .fillMaxWidth()
             .height(70.dp)
-            .background(Color.White, RoundedCornerShape(40.dp))
+            .background(White, RoundedCornerShape(40.dp))
             .clickable(onClick = {
                 onClick()
             })

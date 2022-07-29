@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.yvkalume.fitnessapp.presentation.theme.Typography
+import com.yvkalume.fitnessapp.presentation.theme.White
 import com.yvkalume.fitnessapp.presentation.theme.activeProgress
 import com.yvkalume.fitnessapp.presentation.theme.backgroundProgress
 
@@ -24,7 +25,7 @@ fun ExerciseListItem(exerciseName: String, onClick: () -> Unit = {}) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp, 0.dp)
-            .background(Color.White, RoundedCornerShape(16.dp))
+            .background(White, RoundedCornerShape(16.dp))
             .clickable {
                 onClick()
             }
