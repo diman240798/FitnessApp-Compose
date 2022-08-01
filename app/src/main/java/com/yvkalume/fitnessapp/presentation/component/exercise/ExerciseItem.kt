@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -61,6 +63,7 @@ fun ExerciseItem(data: Exercises, onClick: () -> Unit = {}) {
             imageVector = ImageVector.vectorResource(id = R.drawable.ic_next),
             contentDescription = "Android",
             modifier = Modifier
+                .size(60.dp)
                 .align(Alignment.CenterEnd)
                 .padding(12.dp, 0.dp)
         )

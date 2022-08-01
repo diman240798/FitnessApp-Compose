@@ -20,7 +20,7 @@ import com.yvkalume.fitnessapp.presentation.theme.activeProgress
 import com.yvkalume.fitnessapp.presentation.theme.backgroundProgress
 
 @Composable
-fun ExerciseListItem(exerciseName: String, onClick: () -> Unit = {}) {
+fun ExerciseListItem(name: String, difficulty: Int, onClick: () -> Unit = {}) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -31,19 +31,19 @@ fun ExerciseListItem(exerciseName: String, onClick: () -> Unit = {}) {
             }
     ) {
         Text(
-            text = exerciseName,
+            text = name,
             style = Typography.body1,
             modifier = Modifier.padding(16.dp, 8.dp, 16.dp)
         )
 
         Text(
-            text = "Сложность: 33%",
+            text = "Сложность: $difficulty%",
             style = Typography.caption,
             modifier = Modifier.padding(16.dp, 0.dp)
         )
 
         LinearProgressIndicator(
-            progress = 0.5f,
+            progress = (difficulty.toFloat() / 100),
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color.Transparent, shape = RoundedCornerShape(99.dp))

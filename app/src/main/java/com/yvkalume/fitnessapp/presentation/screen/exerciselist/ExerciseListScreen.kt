@@ -34,6 +34,7 @@ import com.yvkalume.fitnessapp.presentation.component.exerciselist.ExerciseListI
 import com.yvkalume.fitnessapp.presentation.theme.Typography
 import com.yvkalume.fitnessapp.presentation.theme.White
 import com.yvkalume.fitnessapp.presentation.theme.horizontalGradient
+import kotlin.random.Random
 
 @Composable
 fun ExercisesListScreen(navController: NavHostController, type: Exercises) {
@@ -92,7 +93,7 @@ fun ExercisesListScreen(navController: NavHostController, type: Exercises) {
 
                 for ((index, name) in exercieses.withIndex()) {
                     item {
-                        ExerciseListItem(name) {
+                        ExerciseListItem(name, Random.nextInt(98) + 2) {
                             navController.navigate(
                                 Screens.WebView.createRoute(
                                     "file:///android_asset/file/n${type.ordinal + 1}s${index + 1}.html"

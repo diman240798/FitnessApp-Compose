@@ -13,13 +13,19 @@ import androidx.compose.ui.unit.dp
 import com.yvkalume.fitnessapp.presentation.theme.Typography
 import com.yvkalume.fitnessapp.presentation.theme.White
 import com.yvkalume.fitnessapp.presentation.theme.horizontalGradient
+import kotlin.random.Random
 
 @Composable
-fun ProgramItem(programName: String, onClick: () -> Unit = {}) {
+fun ProgramItem(
+    programName: String,
+    exercisesCount: Int = Random.nextInt(10) + 2,
+    timeMinutes: Int = Random.nextInt(30) + 2,
+    onClick: () -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(horizontalGradient, RoundedCornerShape(20.dp))
+            .background(horizontalGradient, RoundedCornerShape(20.dp), 0.5F)
             .clickable {
                 onClick()
             }
@@ -32,7 +38,7 @@ fun ProgramItem(programName: String, onClick: () -> Unit = {}) {
         )
 
         Text(
-            "11 Exercises | 32 mins",
+            "$exercisesCount Упражнений | $timeMinutes минут",
             style = Typography.subtitle1,
             modifier = Modifier.padding(12.dp, 8.dp)
         )
